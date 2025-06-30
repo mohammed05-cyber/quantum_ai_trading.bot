@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum Trading Bot - CV | السيرة الذاتية للروبوت الكوانتمي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --main-bg: linear-gradient(135deg, #232526 0%, #2b5876 100%);
+      --glass-bg: rgba(34, 40, 49, 0.82);
+      --gold: #ffd700;
+      --teal: #43cea2;
+      --purple: #7f53ac;
+      --blue: #185a9d;
+      --header-grad: linear-gradient(90deg, #43cea2 0%, #7f53ac 100%);
+      --section-grad: linear-gradient(120deg, #232526 80%, #2b5876 100%);
+      --shadow: 0 4px 32px #0005;
+      --glass-blur: blur(8px);
+      --en-font: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+      --ar-font: 'Cairo', 'Tahoma', Arial, sans-serif;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--main-bg);
+      min-height: 100vh;
+      font-family: var(--en-font);
+      color: #f8f8ff;
+      transition: background 0.5s;
+    }
+    body[dir="rtl"] {
+      font-family: var(--ar-font);
+    }
+    header {
+      background: var(--header-grad);
+      padding: 60px 0 36px 0;
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    header h1 {
+      font-size: 3.2rem;
+      margin: 0 0 14px 0;
+      letter-spacing: 2px;
+      font-weight: 900;
+      text-shadow: 0 2px 12px #0007;
+      color: var(--gold);
+      font-family: var(--en-font);
+    }
+    body[dir="rtl"] header h1 {
+      font-family: var(--ar-font);
+    }
+    header p {
+      font-size: 1.35rem;
+      margin: 0;
+      color: #e0f7fa;
+      font-weight: 500;
+    }
+    .lang-toggle {
+      position: absolute;
+      top: 24px;
+      right: 32px;
+      background: var(--glass-bg);
+      color: var(--gold);
+      border: none;
+      border-radius: 22px;
+      padding: 10px 24px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px #0003;
+      transition: background 0.3s, color 0.3s;
+      z-index: 10;
+    }
+    .lang-toggle:hover {
+      background: var(--gold);
+      color: #232526;
+    }
+    .section {
+      margin: 44px auto;
+      max-width: 980px;
+      background: var(--glass-bg);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding: 38px 34px;
+      position: relative;
+      overflow: hidden;
+      border: 1.5px solid var(--teal);
+      backdrop-filter: var(--glass-blur);
+      animation: fadeInUp 1s;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section h2 {
+      font-size: 2.1rem;
+      margin-top: 0;
+      margin-bottom: 18px;
+      color: var(--gold);
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-shadow: 0 2px 8px #0006;
+      font-family: var(--en-font);
+    }
+    body[dir="rtl"] .section h2 {
+      font-family: var(--ar-font);
+    }
+    .icon {
+      font-size: 2.1rem;
+      vertical-align: middle;
+      filter: drop-shadow(0 2px 4px #0008);
+    }
+    ul, ol {
+      margin: 0 0 0 24px;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 10px;
+      font-size: 1.09rem;
+    }
+    .highlight {
+      color: var(--teal);
+      font-weight: bold;
+    }
+    .gradient-bar {
+      height: 6px;
+      width: 90px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--gold) 0%, var(--teal) 100%);
+      margin-bottom: 18px;
+    }
+    .code {
+      background: #232b3b;
+      color: var(--gold);
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 1.04rem;
+      display: inline-block;
+      margin: 7px 0;
+      box-shadow: 0 1px 4px #0003;
+      direction: ltr;
+    }
+    .footer {
+      text-align: center;
+      color: #e0f7fa;
+      font-size: 1.13rem;
+      margin: 54px 0 18px 0;
+      opacity: 0.8;
+    }
+    .subsection {
+      margin-top: 18px;
+      margin-bottom: 8px;
+      color: var(--gold);
+      font-size: 1.18rem;
+      font-weight: bold;
+    }
+    .example {
+      background: linear-gradient(90deg, var(--teal) 10%, var(--blue) 100%);
+      color: #fffde7;
+      border-left: 6px solid var(--gold);
+      border-radius: 7px;
+      padding: 13px 18px;
+      margin: 14px 0 18px 0;
+      font-size: 1.01rem;
+      box-shadow: 0 1px 6px #0002;
+    }
+    .kv-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 12px 0 18px 0;
+    }
+    .kv-table td {
+      padding: 6px 12px;
+      border-bottom: 1px solid #334;
+      color: #e0f7fa;
+      font-size: 1.07rem;
+    }
+    .kv-table td.key {
+      color: var(--gold);
+      font-weight: bold;
+      width: 220px;
+    }
+    .ar { display: none; }
+    body[dir="rtl"] .en { display: none; }
+    body[dir="rtl"] .ar { display: block; }
+    body[dir="rtl"] { direction: rtl; }
+    body[dir="rtl"] .code { direction: ltr; text-align: left; }
+    body[dir="rtl"] ul, body[dir="rtl"] ol { margin-left: 0; margin-right: 24px; }
+    @media (max-width: 600px) {
+      header h1 { font-size: 2rem; }
+      .section { padding: 18px 8px; }
+      .section h2 { font-size: 1.2rem; }
+      .kv-table td.key { width: 100px; }
+    }
+  </style>
+</head>
+<body dir="ltr">
+  <header>
+    <button class="lang-toggle" onclick="toggleLang()">العربية | Arabic</button>
+    <h1>🤖 Quantum Trading Bot</h1>
+    <p class="en">The AI-Powered, Risk-Managed, Multi-Asset Automated Trading System</p>
+    <p class="ar">نظام تداول آلي متعدد الأصول مدعوم بالذكاء الاصطناعي وإدارة المخاطر</p>
+  </header>
+
+  <div class="section">
+    <div class="gradient-bar"></div>
+    <h2><span class="icon">🌟</span> <span class="en">About the Bot</span><span class="ar">عن الروبوت</span></h2>
+    <table class="kv-table en">
+      <tr><td class="key">Core Languages</td><td>Python 3, Pandas, NumPy, scikit-learn, XGBoost, TensorFlow, MetaTrader5 API</td></tr>
+      <tr><td class="key">Assets Supported</td><td>Forex, Gold, Crypto, Indices (any symbol with data/model)</td></tr>
+      <tr><td class="key">Timeframes</td><td>M15, H1, H4, D1 (multi-timeframe analysis)</td></tr>
+      <tr><td class="key">Candles Used</td><td>50,000+ per timeframe for each symbol</td></tr>
+      <tr><td class="key">Model Types</td><td>Random Forest, XGBoost, LSTM, Transformer, Logistic Regression (ensemble)</td></tr>
+      <tr><td class="key">Safety Modes</td><td>Dry Run, Paper Trading, Safe Mode, Pre-Launch Diagnostics</td></tr>
+      <tr><td class="key">Monitoring</td><td>Real-time logging, Telegram alerts, resource monitoring, crash recovery</td></tr>
+    </table>
+    <table class="kv-table ar">
+      <tr><td class="key">اللغات الأساسية</td><td>بايثون 3، بانداس، نومباي، سايكيت-ليرن، إكس جي بوست، تينسرفلو، MetaTrader5 API</td></tr>
+      <tr><td class="key">الأصول المدعومة</td><td>الفوركس، الذهب، العملات الرقمية، المؤشرات (أي رمز مع بيانات/نموذج)</td></tr>
+      <tr><td class="key">الإطارات الزمنية</td><td>M15، H1، H4، D1 (تحليل متعدد الإطارات الزمنية)</td></tr>
+      <tr><td class="key">عدد الشموع</td><td>50,000+ لكل إطار زمني ولكل رمز</td></tr>
+      <tr><td class="key">أنواع النماذج</td><td>غابة عشوائية، إكس جي بوست، LSTM، ترانسفورمر، الانحدار اللوجستي (تجميع)</td></tr>
+      <tr><td class="key">أنماط الأمان</td><td>الوضع التجريبي، التداول الورقي، الوضع الآمن، تشخيصات ما قبل الإطلاق</td></tr>
+      <tr><td class="key">المراقبة</td><td>تسجيل لحظي، تنبيهات تيليجرام، مراقبة الموارد، استعادة الأعطال</td></tr>
+    </table>
+    <div class="example en">
+      <b>Example:</b> The bot can trade <span class="highlight">EURUSD</span> on M15, H1, H4, and D1 timeframes, using 50,000 candles per timeframe, and send you a Telegram alert for every trade.
+    </div>
+    <div class="example ar">
+      <b>مثال:</b> يمكن للروبوت التداول على <span class="highlight">EURUSD</span> في إطارات زمنية متعددة (M15، H1، H4، D1) باستخدام 50,000 شمعة لكل إطار، ويرسل تنبيه تيليجرام لكل صفقة.
+    </div>
+    <p class="en">
+      The <span class="highlight">Quantum Trading Bot</span> is a next-generation, fully automated trading system. It combines <b>AI-driven analysis</b>, <b>robust risk management</b>, and <b>real-time execution</b> to deliver safe, scalable, and intelligent trading across multiple assets.<br>
+      <b>Built for safety, transparency, and extensibility.</b>
+    </p>
+    <p class="ar">
+      <span class="highlight">روبوت التداول الكوانتمي</span> هو نظام تداول آلي متطور يجمع بين <b>تحليل الذكاء الاصطناعي</b>، <b>إدارة المخاطر القوية</b>، و<b>تنفيذ الصفقات اللحظي</b> لتحقيق تداول آمن وذكي وقابل للتوسع عبر أصول متعددة.<br>
+      <b>مصمم للأمان والشفافية وقابلية التخصيص.</b>
+    </p>
+  </div>
+
+  <div class="section">
+    <div class="gradient-bar"></div>
+    <h2><span class="icon">🔬</span> <span class="en">Data Analysis & Feature Engineering</span><span class="ar">تحليل البيانات واستخراج الميزات</span></h2>
+    <div class="subsection en">Data Collection</div>
+    <div class="subsection ar">جمع البيانات</div>
+    <ul class="en">
+      <li>Connects to <span class="highlight">MetaTrader 5</span> for institutional-grade, real-time and historical data.</li>
+      <li>Downloads <b>50,000+ candlesticks per timeframe</b> (M15, H1, H4, D1) for each symbol.</li>
+      <li>Supports multi-asset, multi-timeframe data fusion.</li>
+    </ul>
+    <ul class="ar">
+      <li>يتصل بـ <span class="highlight">MetaTrader 5</span> لجلب بيانات السوق اللحظية والتاريخية بجودة مؤسسية.</li>
+      <li>يحمل أكثر من <b>50,000 شمعة</b> لكل إطار زمني (M15، H1، H4، D1) ولكل رمز.</li>
+      <li>يدعم دمج البيانات متعددة الأصول والإطارات الزمنية.</li>
+    </ul>
+    <div class="example en">
+      <b>Example:</b> For GBPUSD, the bot downloads 50,000 M15 candles (520 days), 50,000 H1 candles (over 5 years), and so on, ensuring deep historical context for every prediction.
+    </div>
+    <div class="example ar">
+      <b>مثال:</b> بالنسبة لـ GBPUSD، يقوم الروبوت بتنزيل 50,000 شمعة M15 (520 يومًا)، و50,000 شمعة H1 (أكثر من 5 سنوات)، وهكذا، لضمان سياق تاريخي عميق لكل توقع.
+    </div>
+    <div class="subsection en">Feature Engineering</div>
+    <div class="subsection ar">استخراج الميزات</div>
+    <ul class="en">
+      <li>For each timeframe, computes advanced features including:</li>
+      <ul>
+        <li>Price-based: returns, log-returns, volatility, momentum, rolling stats</li>
+        <li>Volume-based: moving averages, std, volume imbalance</li>
+        <li>Order book: spread, depth, imbalance</li>
+        <li>Technical indicators: RSI, SMA, EMA, MACD, ATR, Bollinger Bands</li>
+        <li>Market regime, sentiment, and pattern recognition features</li>
+      </ul>
+      <li>All features are <b>aligned and merged</b> across timeframes for a single, rich feature vector per sample (often 100+ features).</li>
+      <li>Feature selection and importance analysis is performed to optimize model input.</li>
+    </ul>
+    <ul class="ar">
+      <li>يحسب ميزات متقدمة لكل إطار زمني، مثل:</li>
+      <ul>
+        <li>الأسعار: العوائد، العوائد اللوغاريتمية، التقلب، الزخم، الإحصاءات المتحركة</li>
+        <li>الحجم: المتوسطات المتحركة، الانحراف المعياري، اختلال الحجم</li>
+        <li>دفتر الأوامر: الفارق السعري، العمق، الاختلال</li>
+        <li>المؤشرات الفنية: RSI، SMA، EMA، MACD، ATR، بولينجر باند</li>
+        <li>نظام السوق، المعنويات، واكتشاف الأنماط</li>
+      </ul>
+      <li>يتم دمج جميع الميزات عبر الإطارات الزمنية في متجه ميزات واحد غني (غالبًا أكثر من 100 ميزة).</li>
+      <li>يتم اختيار الميزات وتحليل أهميتها لتحسين أداء النماذج.</li>
+    </ul>
+    <div class="example en">
+      <b>Example Feature Vector:</b>
+      <div class="code">[M15_close=1.2345, H1_rsi=62.1, H4_volatility=0.012, D1_momentum=0.004, ...]</div>
+    </div>
+    <div class="example ar">
+      <b>مثال متجه الميزات:</b>
+      <div class="code">[M15_close=1.2345، H1_rsi=62.1، H4_volatility=0.012، D1_momentum=0.004، ...]</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="gradient-bar"></div>
+    <h2><span class="icon">🧠</span> Model Training & AI Intelligence</h2>
+    <div class="subsection">Training Pipeline</div>
+    <ol>
+      <li>Fetches and prepares <b>50,000+ candles per timeframe</b> for each symbol.</li>
+      <li>Performs <b>data cleaning</b>, normalization, and outlier removal.</li>
+      <li>Engineers and aligns multi-timeframe features (100+ per sample).</li>
+      <li>Prepares target labels (e.g., price movement 24 bars ahead, thresholded for signal).</li>
+      <li>Splits data into <b>training, validation, and out-of-sample test sets</b> (e.g., last 30 days for OOS).</li>
+      <li>Trains multiple models:
+        <ul>
+          <li><b>Random Forest</b> (robust to noise, interpretable)</li>
+          <li><b>XGBoost</b> (handles nonlinearity, fast, accurate)</li>
+          <li><b>LSTM</b> (captures temporal dependencies)</li>
+          <li><b>Transformer</b> (advanced sequence modeling)</li>
+          <li><b>Logistic Regression</b> (baseline, interpretable)</li>
+        </ul>
+      </li>
+      <li>Combines models in a <b>weighted ensemble</b> for final prediction (e.g., 40% XGBoost, 30% LSTM, 30% Transformer).</li>
+      <li>Performs <b>cross-validation</b> and <b>hyperparameter optimization</b> for each model.</li>
+      <li>Validates on out-of-sample data, reporting accuracy, win rate, drawdown, Sharpe ratio, and more.</li>
+      <li>Saves the ensemble as <span class="code">ensemble_model.pkl</span> for each symbol.</li>
+    </ol>
+    <div class="example">
+      <b>Example Training Log:</b>
+      <div class="code">
+[INFO] Training XGBoost for EURUSD...<br>
+[INFO] XGBoost OOS accuracy: 0.68<br>
+[INFO] Training LSTM for EURUSD...<br>
+[INFO] LSTM OOS accuracy: 0.65<br>
+[INFO] Training Transformer for EURUSD...<br>
+[INFO] Transformer OOS accuracy: 0.67<br>
+[INFO] Ensemble OOS accuracy: 0.70<br>
+[INFO] Model saved: models/ensemble/EURUSD/ensemble_model.pkl
+      </div>
+    </div>
+    <div class="subsection">Example Training Stats</div>
+    <ul>
+      <li>Training samples per symbol: <b>40,000 - 100,000</b></li>
+      <li>Features per sample: <b>100 - 200</b></li>
+      <li>Typical out-of-sample accuracy: <b>60% - 72%</b></li>
+      <li>Backtested Sharpe ratio: <b>1.2 - 2.5</b></li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="gradient-bar"></div>
+    <h2><span class="icon">⚡</span> Trading Logic & Execution</h2>
+    <ol>
+      <li>Every cycle (e.g., every 60 seconds):</li>
+      <ul>
+        <li>Fetches latest market data for the symbol</li>
+        <li>Builds the multi-timeframe feature vector</li>
+        <li>Feeds it to the ensemble model for a prediction: <span class="highlight">BUY</span>, <span class="highlight">SELL</span>, or <span class="highlight">HOLD</span></li>
+        <li>Logs every prediction and decision</li>
+      </ul>
+      <li>If a trade is signaled:</li>
+      <ul>
+        <li>Checks all safety flags (<span class="highlight">dry-run</span>, <span class="highlight">paper-trading</span>, <span class="highlight">safe-mode</span>)</li>
+        <li>Executes the order on MT5 (or simulates/logs if in safe mode)</li>
+        <li>Reduces position size if safe mode is active</li>
+        <li>Sets stop loss and take profit based on ATR, volatility, and AI confidence</li>
+        <li>All actions are logged and (optionally) sent to Telegram for instant alerts</li>
+      </ul>
+      <li>Risk management and position sizing are enforced on every trade</li>
+    </ol>
+    <div class="example">
+      <b>Example Prediction & Order:</b>
+      <div class="code">
+Prediction: BUY (confidence: 0.74)<br>
+Order: BUY 0.10 lots EURUSD @ 1.23456<br>
+Stop Loss: 1.22222 | Take Profit: 1.25678<br>
+Mode: DRY RUN (no real trade placed)
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="gradient-bar"></div>
+    <h2><span class="icon">🛡️</span> Safety, Risk Management & Monitoring</h2>
+    <div class="subsection">Safety Features</div>
+    <ul>
+      <li><span class="highlight">Dry Run Mode</span>: Simulates all trades, never risks real money.</li>
+      <li><span class="highlight">Paper Trading</span>: Trades on a demo account for real-world testing with zero risk.</li>
+      <li><span class="highlight">Safe Mode</span>: Reduces all position sizes to the minimum, even in live trading.</li>
+      <li>Pre-launch diagnostics check model integrity, MT5 connection, and system resources before any trade.</li>
+      <li>Fails fast and notifies you if anything is wrong—no silent disasters!</li>
+      <li>All trades and errors are logged for full auditability.</li>
+      <li>Automatic crash recovery and restart logic in the production launcher.</li>
+      <li>Resource monitoring: alerts you if CPU or RAM usage gets too high.</li>
+      <li>Graceful shutdown and cleanup on exit or interruption.</li>
+    </ul>
+    <div class="example">
+      <b>Example Telegram Alert:</b>
+      <div class="code">
+[TELEGRAM] 🚨 EURUSD BUY @ 1.23456 | SL: 1.22222 | TP: 1.25678 | Confidence: 0.74 | Mode: DRY RUN
+      </div>
+    </div>
+    <div class="subsection">Risk Management</div>
+    <ul>
+      <li>Max position size: <b>0.1 lots</b> (configurable)</li>
+      <li>Max daily loss: <b>2%</b> of capital</li>
+      <li>Stop loss: <b>1-2x ATR</b> or dynamic, based on volatility and AI confidence</li>
+      <li>Take profit: <b>2x ATR</b> or dynamic</li>
+      <li>Trailing stops and dynamic stop loss supported</li>
+      <li>Position sizing: Kelly criterion, volatility, and AI confidence</li>
+      <li>Portfolio-level risk controls: max drawdown, diversification, correlation checks</li>
+    </ul>
+    <div class="example">
+      <b>Example Risk Config:</b>
+      <div class="code">
+{
+  "max_position_size": 0.1,
+  "max_daily_loss": 0.02,
+  "stop_loss_atr": 1.5,
+  "take_profit_atr": 2.0,
+  "trailing_stop": true,
+  "ai_confidence_threshold": 0.7
+}
+      </div>
+    </div>
+    <div class="subsection">Monitoring & Transparency</div>
+    <ul>
+      <li>Every action is logged to both file and console, with timestamps and details.</li>
+      <li>Optional <span class="highlight">Telegram notifications</span> for trade actions, errors, and status updates.</li>
+      <li>Comprehensive backtesting and out-of-sample validation for every model.</li>
+      <li>Performance metrics: accuracy, win rate, Sharpe ratio, drawdown, profit factor, and more.</li>
+      <li>Audit trails for every trade and model decision.</li>
+    </ul>
+    <div class="example">
+      <b>Example Log Entry:</b>
+      <div class="code">
+2025-07-01 10:15:23 - INFO - [OK] Trade executed: BUY EURUSD 0.10 lots @ 1.23456 | SL: 1.22222 | TP: 1.25678 | Confidence: 0.74
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="gradient-bar"></div>
+    <h2><span class="icon">🛠️</span> Extensibility & Customization</h2>
+    <ul>
+      <li>Modular codebase: easy to add new features, indicators, or models.</li>
+      <li>Plug in your own feature engineering, risk rules, or portfolio logic.</li>
+      <li>Supports any number of trading pairs—just add models and go!</li>
+      <li>Ready for integration with dashboards, reporting tools, or cloud deployment.</li>
+      <li>Advanced users can add new ML models, custom strategies, or connect to other brokers.</li>
+    </ul>
+    <div class="example">
+      <b>Example:</b> Add a new indicator (e.g., Stochastic Oscillator) to the feature engineering pipeline, retrain the models, and the bot will automatically use it in live trading.
+    </div>
+  </div>
+
+  <div class="footer">
+    &copy; 2025 Quantum Trading Bot &mdash; Built for the Future of Finance 🚀<br>
+    <span style="font-size:0.95em;opacity:0.7;">All technical details based on real code and system design.<br>جميع التفاصيل التقنية مبنية على الكود الحقيقي وتصميم النظام.</span>
+  </div>
+  <script>
+    function toggleLang() {
+      const body = document.body;
+      if (body.dir === 'ltr') {
+        body.dir = 'rtl';
+        document.querySelector('.lang-toggle').innerText = 'English | الإنجليزية';
+      } else {
+        body.dir = 'ltr';
+        document.querySelector('.lang-toggle').innerText = 'العربية | Arabic';
+      }
+    }
+  </script>
+</body>
+</html> 
